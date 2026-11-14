@@ -1,0 +1,52 @@
+name: Validate ASTRA
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: astra
+          POSTGRES_PASSWORD: astra_ci_only
+          POSTGRES_DB: astra
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U astra -d astra"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      DATABASE_URL: postgresql+psycopg://astra:astra_ci_only@localhost:5432/astra
+      ASTRA_TEST_POSTGRES_URL: postgresql+psycopg://astra:astra_ci_only@localhost:5432/astra
+      ENABLE_NASA_NETWORK: "false"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: python -m venv .venv
+      - run: .venv/bin/pip install --upgrade pip
+      - run: .venv/bin/pip install -r backend/requirements.lock.txt
+      - run: ../.venv/bin/alembic upgrade head
+        working-directory: backend
+      - run: ../.venv/bin/ruff check . && ../.venv/bin/ruff format --check . && ../.venv/bin/pytest -q
+        working-directory: backend
+      - run: npm ci && npm run test && npm run build && npm audit --audit-level=moderate
+        working-directory: frontend
+      - run: .venv/bin/pip-audit --progress-spinner off
+      - run: npx playwright install --with-deps chromium
+        working-directory: frontend
+      - run: npm run test:e2e
+        working-directory: frontend
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: browser-failures
+          path: frontend/test-results
+      - run: docker compose config --quiet
+        env:
+          POSTGRES_PASSWORD: astra_ci_only

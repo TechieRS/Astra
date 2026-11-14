@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "retrieved_at": "2026-11-12",
+  "notice": "Curated NASA references and historical media. Mission geography, events, resource capacities, timing and scores are educational fiction. Nothing in this bundle is live lunar telemetry.",
+  "sources": [
+    {
+      "id": "lunar-illumination",
+      "title": "South Pole Illumination Map",
+      "url": "https://science.nasa.gov/photojournal/south-pole-illumination-map/",
+      "organization": "NASA / Goddard / Arizona State University",
+      "kind": "curated_reference",
+      "observation_date": null,
+      "publication_date": "2010-12-15",
+      "retrieved_at": "2026-11-12",
+      "summary": "Sunlight and deep shadow can be close together near the Moon's south pole. LRO images help scientists study where sunlight reaches the surface.",
+      "gameplay_use": "Explains why solar generation is valuable and why a route into shadow needs stored energy. The playable map is original fictional terrain.",
+      "limitations": "This is a historical illumination-map reference, not today's lighting forecast. The publication date is not the observation date; the source combines images collected across six months.",
+      "credit": "NASA/GSFC/Arizona State University; Photojournal PIA13720",
+      "license_url": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+    },
+    {
+      "id": "lunar-ice",
+      "title": "Ice on the Moon",
+      "url": "https://nssdc.gsfc.nasa.gov/planetary/ice/ice_moon.html",
+      "organization": "NASA / National Space Science Data Center",
+      "kind": "curated_reference",
+      "observation_date": "2009-10-09",
+      "publication_date": null,
+      "retrieved_at": "2026-11-12",
+      "summary": "NASA's LCROSS impact into Cabeus crater helped reveal water-bearing material near the lunar south pole. Very cold shadowed regions can preserve ice.",
+      "gameplay_use": "Motivates investigating a shadowed science site and collecting a simulated sample.",
+      "limitations": "The observation date refers to the LCROSS impact. This does not establish ice at every crater, guarantee a playable sample contains ice, or provide a resource concentration for the game's fictional site.",
+      "credit": "NASA NSSDC; LCROSS science context",
+      "license_url": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+    },
+    {
+      "id": "spacesuit-life-support",
+      "title": "What Is a Spacesuit?",
+      "url": "https://www.nasa.gov/humans-in-space/what-is-a-spacesuit/",
+      "organization": "NASA",
+      "kind": "curated_reference",
+      "observation_date": null,
+      "publication_date": null,
+      "retrieved_at": "2026-11-12",
+      "summary": "A spacesuit's life-support backpack carries oxygen, removes exhaled carbon dioxide, and supplies electricity. Astronauts need these systems while working outside.",
+      "gameplay_use": "Explains finite oxygen reserves and why longer trips need a safe return plan.",
+      "limitations": "This reference explains equipment, not a physiological consumption formula. ASTRA oxygen units and equipment bonuses are invented for teaching trade-offs.",
+      "credit": "NASA educational reference",
+      "license_url": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+    },
+    {
+      "id": "lunar-radiation",
+      "title": "How NASA Will Protect Astronauts From Space Radiation at the Moon",
+      "url": "https://science.nasa.gov/science-research/heliophysics/how-nasa-will-protect-astronauts-from-space-radiation-at-the-moon/",
+      "organization": "NASA / Goddard Space Flight Center",
+      "kind": "curated_reference",
+      "observation_date": null,
+      "publication_date": "2019-08-07",
+      "retrieved_at": "2026-11-12",
+      "summary": "Energetic particles from the Sun can create a radiation hazard. Mission teams monitor space weather and plan shelter with shielding material.",
+      "gameplay_use": "Explains the fictional environmental alert and why shelter or ending an excursion can be a sensible choice.",
+      "limitations": "ASTRA's alert is scripted fiction, not a NASA warning. Its educational radiation-risk index is not absorbed dose, dose equivalent, disease probability, or a real flight limit. Ordinary shadow is not a radiation shelter.",
+      "credit": "NASA Science Editorial Team / NASA Goddard",
+      "license_url": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+    },
+    {
+      "id": "nasa-image-library",
+      "title": "NASA Image and Video Library: lunar south pole search",
+      "url": "https://images-api.nasa.gov/search?q=lunar%20south%20pole&media_type=image&page_size=6",
+      "organization": "NASA Image and Video Library",
+      "kind": "historical_media",
+      "observation_date": null,
+      "publication_date": null,
+      "retrieved_at": "2026-11-12",
+      "summary": "NASA's public media catalog provides historical lunar imagery and descriptive metadata. A verified response included the image The Lunar South Pole, NASA ID PIA13523.",
+      "gameplay_use": "Optional science-explorer media enrichment. Does not affect authoritative mission resources or event timing.",
+      "limitations": "Search ordering and metadata can change. date_created is catalog media metadata, not necessarily an instrument observation timestamp. A current fetch of an old image is still historical media, not live lunar data.",
+      "credit": "Per-item NASA center and secondary_creator credits; PIA13523: NASA/GSFC/Arizona State University",
+      "license_url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "api_documentation": "https://images.nasa.gov/docs/images.nasa.gov_api_docs.pdf",
+      "verified_response": {
+        "verification_date": "2026-11-12",
+        "authentication": "No API key used",
+        "transport": "HTTPS with certificate verification enabled via curl",
+        "format": "Collection+JSON",
+        "returned_items": 6,
+        "item_path": "collection.items",
+        "metadata_path": "collection.items[].data[]",
+        "image_links_path": "collection.items[].links[]"
+      },
+      "media_sample": {
+        "nasa_id": "PIA13523",
+        "title": "The Lunar South Pole",
+        "catalog_date_created": "2010-09-27T22:24:40Z",
+        "observation_date": null,
+        "center": "JPL",
+        "credit": "NASA/GSFC/Arizona State University",
+        "thumbnail_url": "https://images-assets.nasa.gov/image/PIA13523/PIA13523~thumb.jpg",
+        "manifest_url": "https://images-assets.nasa.gov/image/PIA13523/collection.json"
+      }
+    }
+  ]
+}

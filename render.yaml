@@ -1,0 +1,22 @@
+databases:
+  - name: astra-db
+    databaseName: astra
+    user: astra
+    plan: basic-256mb
+services:
+  - type: web
+    name: astra-api
+    runtime: python
+    plan: starter
+    buildCommand: pip install -r backend/requirements.lock.txt
+    startCommand: cd backend && alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port $PORT --no-access-log
+    healthCheckPath: /api/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.10
+      - key: DATABASE_URL
+        fromDatabase:
+          name: astra-db
+          property: connectionString
+      - key: ALLOWED_ORIGINS
+        sync: false
