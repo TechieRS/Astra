@@ -18,7 +18,9 @@ The supplied backend lock includes test/QA dependencies for reproducibility. It 
 
 The blueprint structure follows the [official Render specification](https://render.com/docs/blueprint-spec). The frontend's SPA fallback follows [Vercel's official Vite guidance](https://vercel.com/docs/frameworks/frontend/vite#using-vite-to-make-spas).
 
-Review provider plan availability in your account before applying the blueprint; no plan purchase or hosted deployment was performed during implementation. For multiple API replicas, move rate limiting and NASA caching to shared storage; the current limiter/cache are bounded, in-process, and appropriate to one hackathon instance.
+The user selected a **free demo deployment on 14 November 2026**. The blueprint now explicitly uses `plan: free` for both the API and PostgreSQL. Free API instances sleep after 15 idle minutes, so the next request can take about a minute to wake the service. Free Render PostgreSQL expires 30 days after creation; this is a temporary demo, and its data needs exporting or a plan upgrade before expiration. See [Render's free-tier documentation](https://render.com/docs/free). Keep persistence on PostgreSQL, because service-local SQLite files do not survive restarts/redeploys on this plan.
+
+For multiple API replicas, move rate limiting and NASA caching to shared storage; the current limiter/cache are bounded, in-process, and appropriate to one demo instance.
 
 ## Vercel frontend
 
@@ -37,3 +39,12 @@ The health endpoint executes a database query and returns 503 if storage is unav
 ## Validation limits
 
 See `STATUS.md` for checks actually executed. Docker is not installed in the implementation environment, so container build/runtime verification cannot be claimed. Provider deployments and their production logging, HTTPS, and secrets configuration require the user's hosting account and remain unverified.
+
+
+## Selected deployment settings
+
+- Source: `https://github.com/TechieRS/Astra`, branch `main`.
+- Render: repository root, Python runtime, `astra-api` web service and `astra-db` PostgreSQL, both Free. Build/start/health commands are in `render.yaml`; keep both resources in the same region. Set `ALLOWED_ORIGINS` to the exact final Vercel production origin.
+- Vercel: root directory `frontend`, Vite, `npm ci`, `npm run build`, output `dist`. Set production `VITE_API_URL` to the final Render HTTPS service origin without `/api` or a trailing slash. The API origin is a public build-time value.
+- Order: provision Render database/API; obtain its origin; deploy Vercel with that API origin; set Render CORS to the final Vercel origin and redeploy; verify hosted health, source catalog, a mission action and reload persistence.
+- Account connections are required to create/configure the hosted resources. Neither a local build nor a deployment configuration is evidence of a live deployment. Record actual hosted URLs only after the providers confirm success.

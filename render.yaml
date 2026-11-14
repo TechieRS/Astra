@@ -2,12 +2,12 @@ databases:
   - name: astra-db
     databaseName: astra
     user: astra
-    plan: basic-256mb
+    plan: free
 services:
   - type: web
     name: astra-api
     runtime: python
-    plan: starter
+    plan: free
     buildCommand: pip install -r backend/requirements.lock.txt
     startCommand: cd backend && alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port $PORT --no-access-log
     healthCheckPath: /api/health
