@@ -12,6 +12,10 @@ The backend runs as an unprivileged user. Session URLs are private capabilities:
 
 The supplied backend lock includes test/QA dependencies for reproducibility. It is intentionally one small deployable monolith, not a production-optimized minimal wheel. A smaller production-only lock can be derived later with the same audited runtime versions.
 
+## Current hosted demo
+
+The frontend and API were deployed on 15 November 2026. Open **https://astra-one-flame.vercel.app**. The API is **https://astra-api-mkqh.onrender.com**. Exact configuration, database expiration and verification are recorded in [DEPLOYMENT_STATUS.md](DEPLOYMENT_STATUS.md).
+
 ## Render API and PostgreSQL
 
 `render.yaml` describes the API and database. The build runs from repository root to include `data/scientific-references`. The start command changes to `backend`, applies migrations, and binds uvicorn to `$PORT`. Managed PostgreSQL connection strings are normalized to SQLAlchemy's psycopg driver by settings validation. Set `ALLOWED_ORIGINS` to the exact deployed frontend HTTPS origin; do not use a wildcard. No NASA or AI credentials are required.
@@ -28,7 +32,7 @@ Create a Vercel project with root directory `frontend`. Use build command `npm r
 
 ## Sites hosting boundary
 
-Sites publishes static sites or Cloudflare Worker ESM servers. It cannot run the requested Python/FastAPI process and PostgreSQL stack as delivered. Publishing only these static assets without a reachable backend would produce an unplayable mission. This repository includes deployment instructions and configs for the full stack; no Sites URL or hosted deployment is claimed.
+Sites publishes static sites or Cloudflare Worker ESM servers. It cannot run the requested Python/FastAPI process and PostgreSQL stack as delivered. Publishing only these static assets without a reachable backend would produce an unplayable mission. This repository includes deployment instructions and configs for the full stack; no Sites URL is claimed. The active deployment uses Vercel and Render as documented above.
 
 ## Environment, secrets, and operations
 
@@ -38,7 +42,7 @@ The health endpoint executes a database query and returns 503 if storage is unav
 
 ## Validation limits
 
-See `STATUS.md` for checks actually executed. Docker is not installed in the implementation environment, so container build/runtime verification cannot be claimed. Provider deployments and their production logging, HTTPS, and secrets configuration require the user's hosting account and remain unverified.
+See `STATUS.md` for checks actually executed. Docker is not installed in the implementation environment, so container build/runtime verification cannot be claimed. Vercel and Render deployments were performed using authenticated provider CLIs. Hosted checks are recorded in DEPLOYMENT_STATUS.md; provider edge-log redaction and a full operations audit remain unverified.
 
 
 ## Selected deployment settings

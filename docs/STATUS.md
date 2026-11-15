@@ -1,5 +1,8 @@
 # Implementation status
 
+**Hosted demo deployed 15 November 2026:** https://astra-one-flame.vercel.app. API: https://astra-api-mkqh.onrender.com. See [DEPLOYMENT_STATUS.md](DEPLOYMENT_STATUS.md) for resources, database expiration and hosted checks.
+
+
 Delivery date: **12 November 2026**. The workspace was empty at the start. ASTRA now contains a complete, locally runnable flagship mission and its source, tests, migration, science catalog, deployment configuration, and documentation.
 
 **Previous illustrated design restored: 13 November 2026.** At the user’s request, the Lunar Expedition vector refinement was reverted. The application again uses the painted lunar start screen, original WebP Captain Nova/ORBIT/Scout portraits, Fredoka/Nunito Sans typography, warm cream/gold interfaces and the earlier Phaser mission artwork. Mission mechanics, saved data, NASA references and backend code were preserved. The restored UI passed 10 frontend tests, 8 desktop/mobile browser tests, and the production build; desktop and mobile screenshots were visually reviewed. See [REDESIGN.md](REDESIGN.md) and [ART_ASSETS.md](ART_ASSETS.md).
@@ -40,6 +43,7 @@ The following checks actually ran successfully in this environment:
 | Frontend dependency audit | No known vulnerabilities reported |
 | Python dependency audit | No known vulnerabilities in installed public dependencies; local `astra-backend` is not a PyPI package and was excluded by the auditor |
 | Clean npm install plan | `npm ci --dry-run` succeeded |
+| Hosted browser verification | **8 passed** against the actual Vercel frontend and Render/PostgreSQL backend on 15 November 2026; desktop/mobile Chromium and axe-core scans |
 | Backend/frontend HTTP readiness | `/api/health` succeeded; frontend returned HTTP 200 |
 | One-command launcher | Fresh `./scripts/dev.sh` startup, HTTP readiness, a real partial-completion lifecycle, and saved-report retrieval passed |
 | Config syntax | Compose, Render, and CI YAML parsed; Vercel JSON parsed; development launcher passed `bash -n` |
@@ -51,7 +55,7 @@ Production build: main JS approximately **465 kB / 149 kB gzip**, game chunk **1
 ## BLOCKED / UNVERIFIED
 
 - **Docker build and runtime:** Docker is not installed. YAML parsing passed, but `docker compose config`, image builds, nginx runtime, and containerized end-to-end behavior were not executed.
-- **Hosted deployment:** No Render/Vercel account deployment was performed. Provider plans, production secrets, TLS, logging policy, and remote CI execution remain unverified. Sites hosting does not execute the delivered Python/PostgreSQL backend, so publishing the frontend alone would not deliver the requested playable application.
+- **Hosting operations:** Vercel/Render deployment is complete; current hosted checks are recorded in DEPLOYMENT_STATUS.md. Provider edge-log redaction, backups, classroom-scale usage and remote GitHub Actions execution have not been audited.
 - Automated tests used desktop and mobile emulation in Chromium. Real touch devices, Firefox/WebKit, slow-device profiling, classroom trials, and a complete manual screen-reader audit were not performed.
 
 ## NOT IMPLEMENTED

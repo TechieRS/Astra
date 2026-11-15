@@ -1,5 +1,8 @@
 # ASTRA — Junior Mission Commander
 
+**Live demo:** https://astra-one-flame.vercel.app · [Hosting status](docs/DEPLOYMENT_STATUS.md)
+
+
 **Every choice shapes your mission.** An interactive lunar mission trainer for curious explorers aged 7–12, created from a NASA Space Apps Challenge 2026 project brief. This is an independent educational project; NASA has not endorsed or certified it. The supplied challenge brief is treated as the product specification, not a verified official 2026 challenge listing.
 
 ## The problem and the experience
@@ -126,7 +129,7 @@ cp .env.example .env
 docker compose up --build
 ```
 
-Open **http://localhost:8080**. For managed hosting, deploy the API and PostgreSQL on Render using `render.yaml`, and set a Vercel frontend project root to `frontend`. Set `VITE_API_URL` to the HTTPS API origin and `ALLOWED_ORIGINS` to the exact frontend origin. Configuration is supplied; no hosted account or deployment is claimed. See [DEPLOYMENT.md](docs/DEPLOYMENT.md).
+Open **http://localhost:8080**. For managed hosting, deploy the API and PostgreSQL on Render using `render.yaml`, and set a Vercel frontend project root to `frontend`. Set `VITE_API_URL` to the HTTPS API origin and `ALLOWED_ORIGINS` to the exact frontend origin. The live Vercel/Render deployment is recorded in [DEPLOYMENT_STATUS.md](docs/DEPLOYMENT_STATUS.md). See [DEPLOYMENT.md](docs/DEPLOYMENT.md) for setup details.
 
 ## Limits and future improvements
 

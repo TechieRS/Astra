@@ -3,11 +3,15 @@ databases:
     databaseName: astra
     user: astra
     plan: free
+    postgresMajorVersion: "16"
+    region: oregon
+    ipAllowList: []
 services:
   - type: web
     name: astra-api
     runtime: python
     plan: free
+    region: oregon
     buildCommand: pip install -r backend/requirements.lock.txt
     startCommand: cd backend && alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port $PORT --no-access-log
     healthCheckPath: /api/health
