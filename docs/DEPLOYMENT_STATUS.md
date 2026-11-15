@@ -16,7 +16,7 @@ Vercel builds from the local `frontend` directory with the tracked Vite configur
 
 Render builds from repository root so the bundled scientific references are included. It installs the pinned Python dependencies, applies Alembic migrations, then starts uvicorn with access logging disabled. `DATABASE_URL` references the dedicated internal PostgreSQL connection. `ALLOWED_ORIGINS` is exactly `https://astra-one-flame.vercel.app`. Secrets are stored in the providers' environment configuration, not source control. CLI authentication and Vercel local environment files are also outside tracked source.
 
-The Render API is connected to GitHub with deploy-on-commit. The Vercel frontend was deployed using the authenticated CLI from `frontend`; its GitHub auto-deploy connection has not been configured. To publish a frontend update, run `npx vercel deploy --prod --yes --scope ravis-projects-ad3c2dff` from the linked `frontend` directory.
+The Render API builds from the public GitHub repository, branch `main`. To publish a backend update, run `render deploys create srv-dbsjp36k1f9s739gdnrg --confirm` after pushing source; automatic deployment on Git push has not been verified. The Vercel frontend was deployed using the authenticated CLI from `frontend`; its GitHub auto-deploy connection has not been configured. To publish a frontend update, run `npx vercel deploy --prod --yes --scope ravis-projects-ad3c2dff` from the linked `frontend` directory.
 
 ## Database replacement
 
@@ -28,7 +28,9 @@ The workspace previously had its sole free PostgreSQL slot occupied by `nourish-
 - Render API deployment returned `live`; database-backed health returned HTTP 200 and `status: ok`.
 - CORS preflight for the exact production frontend returned HTTP 200.
 - **8 hosted Playwright tests passed** (four each on desktop and mobile Chromium) against the public production URLs: complete mission, actual depletion failure, pause/reload/resume, scientific references, ORBIT, accessibility settings, rover loadout, report/export/replay and a safe early return. The browser suite includes axe-core accessibility scans.
-- A separate hosted mission was created, prepared, launched and inspected for persistence verification across the final backend redeploy. Its post-redeploy result is recorded below once checked.
+- **Persistence across backend redeploy passed.** A separate hosted mission was prepared, launched and inspected before redeploy. After the new Render deployment became live, the same mission retained version 3, ACTIVE status, 4 elapsed minutes, 125 oxygen units, 98 Wh and the habitat-inspected state.
+- Final API deployment: `dep-dbsjste7bikc73fqgod0`, source `f3cc116d28aef9888d2961a3acd21077802ddbcf`, status `live`. Vercel production deployment: `dpl_3BypGKmUgzjtpXtqcoinNR5fGxNX`, status `READY`.
+- Hosted landing screenshot was visually reviewed; the restored illustrated design is active and the footer requested for removal is absent.
 
 ## Free-tier behavior
 

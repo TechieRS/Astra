@@ -44,6 +44,7 @@ The following checks actually ran successfully in this environment:
 | Python dependency audit | No known vulnerabilities in installed public dependencies; local `astra-backend` is not a PyPI package and was excluded by the auditor |
 | Clean npm install plan | `npm ci --dry-run` succeeded |
 | Hosted browser verification | **8 passed** against the actual Vercel frontend and Render/PostgreSQL backend on 15 November 2026; desktop/mobile Chromium and axe-core scans |
+| Hosted restart persistence | A prepared, launched and inspected mission retained its exact version/resources/progress after a Render backend redeploy |
 | Backend/frontend HTTP readiness | `/api/health` succeeded; frontend returned HTTP 200 |
 | One-command launcher | Fresh `./scripts/dev.sh` startup, HTTP readiness, a real partial-completion lifecycle, and saved-report retrieval passed |
 | Config syntax | Compose, Render, and CI YAML parsed; Vercel JSON parsed; development launcher passed `bash -n` |
