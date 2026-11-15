@@ -8,6 +8,8 @@ import type {
 } from "../types";
 
 const base = (import.meta.env.VITE_API_URL ?? "").replace(/\/$/, "");
+// Free Render services can take about a minute to wake after idle time.
+const requestTimeout = import.meta.env.PROD ? 90_000 : 15_000;
 export class ApiError extends Error {
   constructor(
     message: string,
@@ -22,7 +24,7 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
     response = await fetch(`${base}/api${path}`, {
       ...init,
       headers: { "Content-Type": "application/json", ...init?.headers },
-      signal: AbortSignal.timeout(15000),
+      signal: AbortSignal.timeout(requestTimeout),
     });
   } catch {
     throw new ApiError(
